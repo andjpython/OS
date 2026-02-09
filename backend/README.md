@@ -30,19 +30,18 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-### Produção (MySQL)
+### Deploy no Render (PostgreSQL)
 
-```bash
-# Configurar variáveis de ambiente
-set MYSQL_DATABASE=os_db
-set MYSQL_USER=root
-set MYSQL_PASSWORD=senha
-set MYSQL_HOST=localhost
-set MYSQL_PORT=3306
-
-# Aplicar migrations
-python manage.py migrate
-```
+1. Crie um banco **PostgreSQL** no Render e copie a `DATABASE_URL`.
+2. Crie um **Web Service** apontando para o repositório e defina a pasta `backend` como root.
+3. Configure as variáveis de ambiente:
+   - `DATABASE_URL`
+   - `SECRET_KEY`
+   - `DEBUG=0`
+   - `ALLOWED_HOSTS` (ex: `seu-app.onrender.com`)
+4. Comandos do serviço:
+   - **Build**: `pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate`
+   - **Start**: `gunicorn backend.wsgi:application`
 
 ## API Endpoints
 
