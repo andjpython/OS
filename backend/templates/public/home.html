@@ -1,0 +1,84 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Schott OS</title>
+    <link rel="icon" href="{% static 'imagens/schott_os_icon.svg' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+  </head>
+  <body class="public-page">
+    <div class="page">
+      <header class="top-banner">
+        <img
+          class="top-logo"
+          src="{% static 'imagens/imagens.jpg' %}"
+          alt="SCHOTT"
+        />
+      </header>
+
+      <main class="hero">
+        <section class="hero-content">
+          <div class="content-card">
+            <span class="eyebrow">Sistema de Ordens de Servico</span>
+            <div class="brand">
+              <img
+                class="brand-icon"
+                src="{% static 'imagens/Schott_(Unternehmen)_logo.svg' %}"
+                alt="Schott"
+              />
+              <div class="brand-text">
+                <h1>Portal Schott</h1>
+                <p>Controle, rastreio e atendimento tecnico com foco em eficiencia.</p>
+              </div>
+            </div>
+            <div class="icon-row" aria-label="Identidade do sistema">
+              <img
+                class="icon"
+                src="{% static 'imagens/Schott_(Unternehmen)_logo.svg' %}"
+                alt="SCHOTT"
+              />
+              <img
+                class="icon"
+                src="{% static 'imagens/schott_os_icon.svg' %}"
+                alt="Schott OS"
+              />
+            </div>
+            <div class="form-actions">
+              <a class="cta secondary" href="/cadastro/">Cadastrar colaborador</a>
+              <a class="cta" href="/admin/">Entrar</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="hero-visual" aria-hidden="true">
+          <div class="blend base">
+            <img src="{% static 'imagens/scht.jpg' %}" alt="" />
+          </div>
+          <div class="blend overlay">
+            <img src="{% static 'imagens/site.jpg' %}" alt="" />
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      const tunedElements = document.querySelectorAll(
+        ".content-card, .hero-visual, .top-logo"
+      );
+      tunedElements.forEach((element, index) => {
+        const base = 16 + (index % 3) * 6;
+        const alt = 28 + (index % 4) * 5;
+        element.classList.add("tuned");
+        element.style.setProperty("--radius-main", `${alt}px`);
+        element.style.setProperty("--radius-alt", `${base}px`);
+      });
+
+      const icons = document.querySelectorAll(".icon, .brand-icon");
+      icons.forEach((icon, index) => {
+        icon.classList.add("icon-spread");
+        icon.style.setProperty("--icon-delay", `${index * 0.08}s`);
+      });
+    </script>
+  </body>
+</html>

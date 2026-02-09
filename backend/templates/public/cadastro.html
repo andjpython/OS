@@ -1,0 +1,73 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cadastro de Colaborador - Schott OS</title>
+    <link rel="icon" href="{% static 'imagens/schott_os_icon.svg' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+  </head>
+  <body class="public-page">
+    <div class="page">
+      <header class="top-banner">
+        <img
+          class="top-logo"
+          src="{% static 'imagens/imagens.jpg' %}"
+          alt="SCHOTT"
+        />
+      </header>
+
+      <main class="hero form-hero">
+        <section class="hero-content">
+          <div class="content-card form-card">
+            <span class="eyebrow">Cadastro de colaborador</span>
+            <h1 class="form-title">Dados do colaborador</h1>
+
+            {% if messages %}
+              <div class="form-messages">
+                {% for message in messages %}
+                  <div class="form-message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <form method="post" class="form">
+              {% csrf_token %}
+              <label class="field">
+                <span>Nome</span>
+                <input type="text" name="nome" required />
+              </label>
+              <label class="field">
+                <span>E-mail</span>
+                <input type="email" name="email" required />
+              </label>
+              <label class="field">
+                <span>Senha</span>
+                <input type="password" name="senha" required />
+              </label>
+              <label class="field">
+                <span>Profissao</span>
+                <input type="text" name="profissao" required />
+              </label>
+              <div class="form-actions">
+                <a class="cta secondary" href="/">Voltar</a>
+                <button class="cta" type="submit">Cadastrar</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      const tunedElements = document.querySelectorAll(".content-card, .top-logo");
+      tunedElements.forEach((element, index) => {
+        const base = 16 + (index % 3) * 6;
+        const alt = 28 + (index % 4) * 5;
+        element.classList.add("tuned");
+        element.style.setProperty("--radius-main", `${alt}px`);
+        element.style.setProperty("--radius-alt", `${base}px`);
+      });
+    </script>
+  </body>
+</html>

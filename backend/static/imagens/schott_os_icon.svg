@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ring" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4F8EF7"/>
+      <stop offset="0.5" stop-color="#0B2B4E"/>
+      <stop offset="1" stop-color="#79B6FF"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9ED2FF" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#1B4E8A" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="#0B1B2E"/>
+  <rect x="6.5" y="6.5" width="51" height="51" rx="14" stroke="url(#ring)" stroke-width="3"/>
+  <circle cx="46" cy="18" r="10" fill="url(#glow)"/>
+  <text x="32" y="38" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#EAF4FF">OS</text>
+  <text x="32" y="52" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="9" letter-spacing="2" fill="#7FB3FF">SCHOTT</text>
+</svg>
