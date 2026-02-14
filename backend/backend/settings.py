@@ -37,6 +37,24 @@ def get_env_list(name: str) -> list[str]:
     return [item.strip() for item in raw.split(',') if item.strip()]
 
 
+def get_env_int(name: str, default: int = 0) -> int:
+    raw = os.environ.get(name)
+    if raw is None or not raw.strip():
+        return default
+    try:
+        return int(raw)
+    except ValueError:
+        return default
+
+
+def get_env_tuple(name: str) -> tuple[str, ...] | None:
+    raw = os.environ.get(name)
+    if not raw:
+        return None
+    parts = [item.strip() for item in raw.split(',') if item.strip()]
+    return tuple(parts) if parts else None
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get(
     'SECRET_KEY',
@@ -48,6 +66,22 @@ DEBUG = get_env_bool('DEBUG', False)
 
 ALLOWED_HOSTS = get_env_list('ALLOWED_HOSTS') or ['localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = get_env_list('CSRF_TRUSTED_ORIGINS')
+SECURE_SSL_REDIRECT = get_env_bool('SECURE_SSL_REDIRECT', not DEBUG)
+SESSION_COOKIE_SECURE = get_env_bool('SESSION_COOKIE_SECURE', not DEBUG)
+CSRF_COOKIE_SECURE = get_env_bool('CSRF_COOKIE_SECURE', not DEBUG)
+SECURE_HSTS_SECONDS = get_env_int(
+    'SECURE_HSTS_SECONDS',
+    31536000 if not DEBUG else 0,
+)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = get_env_bool(
+    'SECURE_HSTS_INCLUDE_SUBDOMAINS',
+    not DEBUG,
+)
+SECURE_HSTS_PRELOAD = get_env_bool('SECURE_HSTS_PRELOAD', not DEBUG)
+
+secure_proxy_ssl_header = get_env_tuple('SECURE_PROXY_SSL_HEADER')
+if secure_proxy_ssl_header:
+    SECURE_PROXY_SSL_HEADER = secure_proxy_ssl_header
 
 
 # Application definition
